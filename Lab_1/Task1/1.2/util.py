@@ -1,14 +1,14 @@
-import Constant
+import constant
 
-def Calculate(num1, num2, operation):
+def calculate(num1, num2, operation):
     match operation:
-        case Constant.ADD:
+        case constant.ADD:
             return (num1 + num2)
-        case Constant.SUB:
+        case constant.SUB:
             return (num1 - num2)
-        case Constant.MULT:
+        case constant.MULT:
             return (num1 * num2)
-        case Constant.DIV: 
+        case constant.DIV: 
 
             if(num2 == 0):
                 print("Divide by zero")

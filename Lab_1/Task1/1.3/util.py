@@ -1,4 +1,4 @@
-def makeEvenNemberList(list):
+def make_even_number_list(list):
     out_list = []
 
     try:

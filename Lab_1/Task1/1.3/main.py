@@ -1,3 +1,3 @@
-import Util
+import util
 
-print(Util.makeEvenNemberList(input("Enter list ").split(' ')))
+print(util.make_even_number_list(input("Enter list ").split(' ')))

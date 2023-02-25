@@ -1,3 +1,10 @@
-import Util
+import util
 
-print(Util.Calculate(int(input("Enter first number: ")), int(input("Enter second number: ")), input("Enter operation: ")))
+try:
+    num1 = int(input("Enter first number: "))
+    num2 = int(input("Enter second number: "))
+except:
+    print("Incorrect number")
+    exit()
+
+print(util.calculate(num1, num2, input("Enter operation: ")))
