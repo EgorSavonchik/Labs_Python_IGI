@@ -4,7 +4,7 @@ import constant
 def remove_russian_letter(text) :
     for i in range(0, len(text)) :
         if re.search("[а-яА-Я]", text[i]) :
-            text = text.remove(i)
+            text = text.replace(text[i], " ")
     
     return text
 
@@ -13,16 +13,19 @@ def number_of_sentences(text : str) :
 
     count = len(re.findall(constant.SENTENCE_PATTERN, text))
 
-    count -= len(re.findall(constant.INITIALS, text)) * 2
-
-    text = text.lower()
+    count -= sum(initials.count(".") for initials in re.findall(constant.INITIALS, text))
 
     for abbr in constant.ONE_WORD_ABBREVIATIONS :
-        count -= len(re.findall(abbr, text)) #  + " [A-Z]{1,}"
+        count -= len(re.findall(abbr + "(?:,+| [a-z])", text)) #  + " [A-Z]{1,}" posle abb s malenkoy bukvi
+
+    for abbr in constant.NOT_END_ONE_WORD_ABBREVIATIONS :
+        count -= len(re.findall(abbr, text))
 
     for abbr in constant.TWO_WORDS_ABBREVIATIONS :
-        count -= len(re.findall(abbr, text)) * 2
-
+        count -= len(re.findall(abbr + "(?:,+| [a-z])", text)) * 2
+        count -= len(re.findall(abbr + " [A-Z]", text))
+        count -= len(re.findall(abbr + "$", text))
+    
     return count
 
 def number_of_non_declaration_sentances(text : str) :
@@ -42,14 +45,14 @@ def average_length_of_words(text : str) :
     return round(sum(len(word) for word in words) / len(words), 2) if len(words) != 0 else 0
 
 def top_k_repeated_ngrams(text : str, k = 10, n = 4) : 
-    text = remove_russian_letter(text).lower() # register not consider
+    text = remove_russian_letter(text) #.lower() # register consider
 
     words = re.findall(constant.WORD_PATTERN, text)
 
     seq = [words[i:] for i in range(n)]
  
-    ngrams = list(zip(*seq))
-  
+    ngrams = [" ".join(ngram) for ngram in list(zip(*seq))]
+
     dict = {}
 
     for ngram in ngrams :
@@ -58,6 +61,6 @@ def top_k_repeated_ngrams(text : str, k = 10, n = 4) :
         else :
             dict[ngram] += 1
 
-    return sorted(dict.items(), key = lambda x: x[1], reverse = True)[0:k] if len(ngrams) != 0 else 0
+    return sorted(dict.items(), key = lambda x: x[1], reverse = True)[0:k] 
 
 

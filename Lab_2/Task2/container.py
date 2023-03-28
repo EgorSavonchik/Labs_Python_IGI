@@ -14,6 +14,12 @@ class Container :
 
 
     def add(self, add_list) :
+        for i in range(0, len(add_list)) :
+            try :
+                add_list[i] = str(int(add_list[i]))
+            except :
+                pass
+
         if(self.user_containers.get(self.current_user_name) == None) :
             self.user_containers[self.current_user_name] = set(add_list)
         else :
@@ -53,10 +59,17 @@ class Container :
 
         for user in file.readlines() :
             if(user.split(" ")[0] == self.current_user_name) :
+                add_list = user.replace("\n", "").split(" ")[2::]
+                for i in range(0, len(add_list)) :
+                    try :
+                        add_list[i] = str(int(add_list[i]))
+                    except :
+                        pass
+
                 if(self.user_containers.get(self.current_user_name) == None) :
-                    self.user_containers[self.current_user_name] = set(user.replace("\n", "").split(" ")[2::])
+                    self.user_containers[self.current_user_name] = set(add_list)
                 else :
-                    self.user_containers[self.current_user_name] = self.user_containers[self.current_user_name].union(set(user.replace("\n", "").split(" ")[2::]))
+                    self.user_containers[self.current_user_name] = self.user_containers[self.current_user_name].union(set(add_list))
 
         file.close()
 

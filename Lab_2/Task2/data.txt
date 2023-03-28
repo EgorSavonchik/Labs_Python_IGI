@@ -1,2 +1,1 @@
-Egor : val2 val1 val3
-Vadim : value value2 value3
+Egor : 2 ldg val2 val1 val3
