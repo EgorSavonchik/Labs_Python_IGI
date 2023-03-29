@@ -23,9 +23,19 @@ class containerCLI :
                 case "grep" :
                     self.storage.grep(command.split(" ")[1])
                 case "save" :
-                    self.storage.save()
+                    path = command.split(" ")[1] if len(command.split(" ")) == 2 else ""
+
+                    if path == "" :
+                        self.storage.save()
+                    else :
+                        self.storage.save(path)
                 case "load" :
-                    self.storage.load()
+                    path = command.split(" ")[1] if len(command.split(" ")) == 2 else ""
+
+                    if path == "" :
+                        self.storage.load()
+                    else :
+                        self.storage.load(path)
                 case "switch" :
                     match(input("you want save container?").lower()) :
                         case "yes" :

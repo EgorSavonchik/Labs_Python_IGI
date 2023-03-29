@@ -32,6 +32,14 @@ def test_count_sentences_7():
     text = 'Hi, J. R. R. Tlokien!'
     assert util.number_of_sentences(text) == 1
 
+def test_count_sentences_8():
+    text = 'Have u ever heard song, "...QWet dfg."'
+    assert util.number_of_sentences(text) == 1
+    
+def test_count_sentences_9():
+    text = 'Have u ever heard song, "...QWet dfg. Hi!"'
+    assert util.number_of_sentences(text) == 1
+
 def test_count_sentences_10():
     text = 'Hi, Mr. Tom. Goodbye, Mrs. Smith! How r u, J. R. R. Tolkien?!'
     assert util.number_of_sentences(text) == 3
@@ -56,19 +64,23 @@ def test_nondecl_sentences_1():
     text = 'Hi, Mr. Tom. Goodbye, Mrs. Smith?!'
     assert util.number_of_non_declaration_sentances(text) == 1
 
+def test_nondecl_sentences_2():
+    text = 'Hi, Mr. Tom. Goodbye, Mrs. Smith?! Blabla, "Qwe!"'
+    assert util.number_of_non_declaration_sentances(text) == 1
+
 def test_nondecl_sentences_3():
     text = 'Hi, Mr. Tom. Goodbye, Mrs. Smith?!'
     assert util.number_of_non_declaration_sentances(text) == 1
 
-def test_nondecl_sentences_3():
+def test_nondecl_sentences_4():
     text = 'Hi, Mr. Tom. Goodbye, Mrs. Smith?! Some text... Some text!'
     assert util.number_of_non_declaration_sentances(text) == 2
 
-def test_nondecl_sentences_4():
+def test_nondecl_sentences_5():
     text = 'Some text; some text...'
     assert util.number_of_non_declaration_sentances(text) == 0
 
-def test_nondecl_sentences_5():
+def test_nondecl_sentences_6():
     text = 'Some text; some text... Some text!!!'
     assert util.number_of_non_declaration_sentances(text) == 1
 
@@ -84,6 +96,11 @@ def test_avg_sen_len_2():
     text = 'Hi, Mr. Tom. Goodbye, Mrs. Smith! How r u, J. R. R. Tolkien?!'
     exp = (7 + 15 + 15) / 3
     assert util.average_length_of_sentences(text) == round(exp, 2)
+
+def test_avg_sen_len_3():
+    text = 'Hi, Mr. Tom. Goodbye, Mrs. Smith! How r u, J. R. R. Tolkien?! Some text, "...Some text?!"'
+    exp = (7 + 15 + 15 + 16) / 4
+    assert util.average_length_of_sentences(text) == exp
 
 def test_avg_sen_len_4():
     text = 'Hi, Mr. Tom. Goodbye, Mrs. Smith! How r u, J. R. R. Tolkien 123?!'

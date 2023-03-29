@@ -55,18 +55,26 @@ class Container :
         if(self.user_containers.get(self.current_user_name) == None) :
             print("Dont have elements")
         else :
-            print(' '.join(self.user_containers[self.current_user_name]))
+            print(', '.join(self.user_containers[self.current_user_name]))
 
-    def save(self) :
-        file = open(os.path.join(os.path.dirname(__file__), "data.txt"), "w")
+    def save(self, path = os.path.join(os.path.dirname(__file__), "data.txt")) :
+        try :
+            file = open(path, "w")
+        except :
+            print("file not exist")
+            return
 
         for username, value in self.user_containers.items() :
             file.write(username + " : " + ' '.join(value) + "\n")
 
         file.close()
 
-    def load(self) :
-        file = open(os.path.join(os.path.dirname(__file__), "data.txt"), "r")
+    def load(self, path = os.path.join(os.path.dirname(__file__), "data.txt")) :
+        try : 
+            file = open(path, "r")
+        except :
+            print("file not exist")
+            return
 
         for user in file.readlines() :
             if(user.split(" ")[0] == self.current_user_name) :
