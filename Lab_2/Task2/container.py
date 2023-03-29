@@ -26,10 +26,21 @@ class Container :
             self.user_containers[self.current_user_name] = self.user_containers[self.current_user_name].union(set(add_list))
 
     def remove(self, key) :
+        try :
+            key = str(int(key))
+        except :
+            pass
+
         self.user_containers[self.current_user_name].remove(key) # remove - throw exceprion || discard - no
 
     def find(self, key_list) :
         result_list = []
+
+        for i in range(0, len(key_list)) :
+            try :
+                key_list[i] = str(int(key_list[i]))
+            except :
+                pass
 
         for key in key_list :
             if(key in self.user_containers[self.current_user_name]) :
