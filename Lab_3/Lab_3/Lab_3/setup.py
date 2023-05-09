@@ -5,7 +5,7 @@ setup(
     name="SavonchikSerializer",
     version="1.0",
     description="module for python serialization(JSON, XML)",
-    url="https://github.com/SeMsei/pythn_igi/tree/lab3/Lab_3",
+    url="https://github.com/EgorSavonchik/Labs_Python_IGI/tree/Lab3",
     author="Egor Savonchik",
     author_email="egorsavonchik1@gmail.com",
     classifiers=[

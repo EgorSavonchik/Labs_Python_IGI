@@ -1,3 +1,4 @@
+
 from Serializers.serializers_factory import SerializersFactory, SerializerType
 
 
@@ -47,18 +48,43 @@ class tesr:
     def sm() :
         return 4
 
+
+def decorat(func):
+    def wrap(*args):
+        if(len(args) >= 10):
+            raise("10+")
+
+        func(args)
+
+    return wrap
+
+@decorat
+def func(*args) :
+    return args.__len__()
+
+
+
+
+
 if __name__ == '__main__':
 
     '''o = None
     #o = 103
     #o = {1:{1:{1:{1:{1:{1:{1:1}}}}}}}'''
 
-    s = SerializersFactory.create_serializer(SerializerType.JSON)
+    s = SerializersFactory.create_serializer(SerializerType.XML)
 
-    with open("data_file.json", "w") as file:
-        s.dump(T, file)
-    with open("data_file.json", "r") as file:
+    with open("data.xml", "w") as file:
+        s.dump(A, file)
+    with open("data.xml", "r") as file:
         a = s.load(file)
+
+    print(a)
+    
+    
+
+
+
 
 
 

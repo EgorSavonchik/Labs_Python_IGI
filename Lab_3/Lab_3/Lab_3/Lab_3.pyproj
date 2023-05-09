@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b9659e4c-2ddc-49fa-8493-0b5e7222d185</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>test_CLI.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

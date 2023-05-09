@@ -1,1 +1,15 @@
-{"type": "type", "source": {"__name__": "T", "__bases__": {"type": "tuple", "source": []}, "__dict__": {"__module__": "__main__", "A": "asdf", "B": 11, "C": 14, "__doc__": null}}}
+{
+  "type": "type",
+  "source": {
+    "__name__": "A",
+    "__bases__": {
+      "type": "tuple",
+      "source": []
+    },
+    "__dict__": {
+      "__module__": "__main__",
+      "a": "A",
+      "__doc__": null
+    }
+  }
+}
