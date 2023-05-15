@@ -1,92 +1,76 @@
 
 from Serializers.serializers_factory import SerializersFactory, SerializerType
+import math
 
 
-class T:
-    A = "asdf"
-    B = 11
-    C = 14
 
+def my_decor(meth):
+    def inner(*args, **kwargs):
+        print('I am in my_decor')
+        return meth(*args, **kwargs)
 
-def my_decorator(func):
-    def cwrapper(*args, **kwargs):
-        print("start func")
-        func(*args, **kwargs)
-        print("end func")
-
-    return cwrapper
-
-
-def for_dec(a):
-    print("Hello world", a)
-
-
-df = my_decorator(for_dec)
+    return inner
 
 
 class A:
-    a = "A"
+    x = 10
+
+    @my_decor
+    def my_sin(self, c):
+        return math.sin(c * self.x)
+
+    @staticmethod
+    def stat():
+        return 145
+
+    def __str__(self):
+        return 'AAAAA'
+
+    def __repr__(self):
+        return 'AAAAA'
 
 
-class B(A):
-    a = "B"
+class B:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    #@property
+    #def prop(self):
+    #    return self.a * self.b
+
+    @classmethod
+    def class_meth(cls):
+        return math.pi
 
 
-class C(A):
-    a = "C"
+class C(A, B):
+    pass
 
 
-class D(B, C):
-    a = "D"
+ser = SerializersFactory.create_serializer(SerializerType.JSON)
 
-class tesr:
-    classmethod
-    def clm() :
-        return 5
+# var = 15
+# var_ser = ser.dumps(var)
+# var_des = ser.loads(var_ser)
+# print(var_des)
 
-    staticmethod
-    def sm() :
-        return 4
+C_ser = ser.dumps(C)
+C_des = ser.loads(C_ser)
 
+c = C(1, 2)
+c_ser = ser.dumps(c)
+c_des = ser.loads(c_ser)
 
-def decorat(func):
-    def wrap(*args):
-        if(len(args) >= 10):
-            raise("10+")
-
-        func(args)
-
-    return wrap
-
-@decorat
-def func(*args) :
-    return args.__len__()
-
-
-
-
-
-if __name__ == '__main__':
-
-    '''o = None
-    #o = 103
-    #o = {1:{1:{1:{1:{1:{1:{1:1}}}}}}}'''
-
-    s = SerializersFactory.create_serializer(SerializerType.XML)
-
-    with open("data.xml", "w") as file:
-        s.dump(A, file)
-    with open("data.xml", "r") as file:
-        a = s.load(file)
-
-    print(a)
-    
-    
-
+print(c_des)
+print(c_des.x)
+print(c_des.my_sin(10))
+print(c_des.prop)
+print(C_des.stat())
+print(c_des.class_meth())
 
 
 
-
-
-
+# f = C(1, 2)
+# print(f.my_sin(11))
 
