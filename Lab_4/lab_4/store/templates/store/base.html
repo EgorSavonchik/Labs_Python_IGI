@@ -23,10 +23,11 @@
                 {% endif %}
                 {% endwith %}
                 {% if user.is_authenticated %}
-                {{ user.username }}
-                <a href="login:logout">Out</a>
+                | {{ user.username }} |
+                <a href="{% url 'login:logout' %}">Out</a>
                 {% else %}
-                <a href="login:login">Sign up</a>
+                <a href="{% url 'login:login' %}">Sign up</a>
+                <a href="{% url 'login:register' %}">Sign in</a>
                 {% endif %}
             </div>
         </div>

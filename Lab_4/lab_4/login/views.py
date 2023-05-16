@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect
 
 class RegisterFormView(FormView) :
     form_class = UserCreationForm
-    success_url = ''
+    success_url = '/'
 
     template_name = 'register.html'
 
@@ -23,20 +23,20 @@ class RegisterFormView(FormView) :
         return super(RegisterFormView, self).form_invalid(form)
     
 class LoginFormView(FormView) :
-        form_class = AuthenticationForm
+    form_class = AuthenticationForm
 
-        template_name = 'login.html'
+    template_name = 'login.html'
 
-        success_url = ''
+    success_url = '/'
 
-        def form_valid(self, form) -> HttpResponse:
-            self.user = form.get_user()
+    def form_valid(self, form) -> HttpResponse:
+        self.user = form.get_user()
 
-            login(self.request, self.user)    
-            return super(LoginFormView, self).form_valid(form)
+        login(self.request, self.user)    
+        return super(LoginFormView, self).form_valid(form)
         
 class LogoutView(View):
     def get(self, request):
         logout(request)
 
-        return HttpResponseRedirect('')
+        return HttpResponseRedirect('/')
