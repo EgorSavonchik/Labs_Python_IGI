@@ -42,7 +42,7 @@
               {{ item.quantity }}
             </td>
             <td class="num">{{ item.cost }}</td>
-            <td class="num">{{ item.total_price }}</td>
+            <td class="num">{{ item.total_cost }}</td>
           </tr>
         {% endwith %}
       {% endfor %}
@@ -55,6 +55,8 @@
   </table>
   <p class="text-right">
     <a href="{% url 'store:product_list' %}" class="button light">В магазин</a>
-    <a href="#" class="button">Оформить заказ</a>
+    <a href="{% url "orders:order_create" %}" class="button">
+      Checkout
+  </a>
   </p>
 {% endblock %}

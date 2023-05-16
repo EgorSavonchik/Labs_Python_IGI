@@ -18,21 +18,19 @@ class Cart(object):
 
     def __iter__(self):
         """
-        Перебираем товары в корзине и получаем товары из базы данных.
+        Перебор элементов в корзине и получение продуктов из базы данных.
         """
         product_ids = self.cart.keys()
-        # получаем товары и добавляем их в корзину
+        # получение объектов product и добавление их в корзину
         products = Product.objects.filter(id__in=product_ids)
-
-        cart = self.cart.copy()
         for product in products:
-            cart[str(product.id)]['product'] = product
+            self.cart[str(product.id)]['product'] = product
 
-        for item in cart.values():
+        for item in self.cart.values():
             item['cost'] = Decimal(item['cost'])
-            item['cost'] = item['cost'] * item['quantity']
+            item['total_cost'] = item['cost'] * item['quantity']
             yield item
-    
+        
     def __len__(self):
         """
         Считаем сколько товаров в корзине

@@ -72,16 +72,3 @@ class Client(models.Model) :
 
     def __str__(self) :
         return '{0}, {1}'.format(self.first_name, self.last_name) 
-
-class Order(models.Model) :
-    
-    client = models.ForeignKey('Client',
-                                on_delete=models.DO_NOTHING)
-    product = models.ForeignKey('Product',
-                                on_delete=models.DO_NOTHING)
-    quantity = models.IntegerField()
-    date_of_sale = models.DateField(auto_now_add=True)
-    date_of_delivery = models.DateField()
-
-    def __str__(self) :
-        return '{0}, {1}'.format(self.client, self.product) 

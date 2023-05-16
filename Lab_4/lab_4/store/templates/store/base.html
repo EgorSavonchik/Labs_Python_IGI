@@ -22,6 +22,12 @@
                 Cart empty
                 {% endif %}
                 {% endwith %}
+                {% if user.is_authenticated %}
+                {{ user.username }}
+                <a href="login:logout">Out</a>
+                {% else %}
+                <a href="login:login">Sign up</a>
+                {% endif %}
             </div>
         </div>
         <div id="content">

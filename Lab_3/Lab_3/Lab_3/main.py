@@ -1,7 +1,7 @@
 
+from msilib.schema import Property
 from Serializers.serializers_factory import SerializersFactory, SerializerType
 import math
-
 
 
 def my_decor(meth):
@@ -65,7 +65,7 @@ c_des = ser.loads(c_ser)
 print(c_des)
 print(c_des.x)
 print(c_des.my_sin(10))
-print(c_des.prop)
+#print(c_des.prop)
 print(C_des.stat())
 print(c_des.class_meth())
 
