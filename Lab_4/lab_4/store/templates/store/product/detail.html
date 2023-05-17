@@ -18,6 +18,6 @@
         <input type="submit" value="In cart">
     </form>
     {{ product.description|linebreaks }}
-    <td><a href="edit/{{person.id}}">Edit</a> | <a href="delete/{{person.id}}">Remove</a></td>
+    <td><a href="edit/{{ product.id }}/">Edit</a> | <a href="delete/{{ product.id }}/">Remove</a></td>
 </div>
 {% endblock %}

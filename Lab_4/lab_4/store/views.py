@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from .models import ProductType, Product
+from .models import ProductType, Product, Producer
 from cart.forms import CartAddProductForm
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
+from .forms import ProductForm
 
 def product_list(request, product_type_name = None):
     product_type = None
@@ -31,38 +32,47 @@ def product_detail(request, id):
  
 # сохранение данных в бд
 def product_create(request):
+    form = ProductForm()
+
     if request.method == "POST":
+        
         product = Product.objects.create(name=request.POST.get('name'),
-                                         producer=request.POST.get('producer'),
+                                         producer=Producer.objects.get(id=request.POST.get('producer')),
                                          cost=request.POST.get('cost'),
-                                         type=request.POST.get('type'),
+                                         type=ProductType.objects.get(id=request.POST.get('type')),
                                          quantity=0,
                                          description=request.POST.get('description'),
-                                         image=request.POST.get('image'),
+                                         image=request.FILES.get('image'),
                                          units=request.POST.get('units'))
 
         product.save()
-    return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/")
+    else:
+        return render(request, "store/product/create.html", {"form" : form})
+    
  
 # изменение данных в бд
 def product_edit(request, id):
-    form = 
+    
     try:
         product = Product.objects.get(id=id)
- 
+        form = ProductForm(initial={'name':product.name, 'producer':product.producer,
+                                    'cost':product.cost, 'type':product.type, 
+                                    'description':product.description, 'image':product.image,
+                                    'units':product.units})
+
         if request.method == "POST":
-            product.producer=request.POST.get('producer')
+            product.producer=Producer.objects.get(id=request.POST.get('producer'))
             product.cost=request.POST.get('cost')
-            product.type=request.POST.get('type')
-            product.quantity=request.POST.get('quantity')
+            product.type=ProductType.objects.get(id=request.POST.get('type'))
             product.description=request.POST.get('description')
-            product.image=request.POST.get('image')
+            product.image=request.FILES.get('image')
             product.units=request.POST.get('units')
 
             product.save()
             return HttpResponseRedirect("/")
         else:
-            return render(request, "store/product/edit.html", {"product": product})
+            return render(request, "store/product/edit.html", {"product": product, "form" : form})
     except product.DoesNotExist:
         return HttpResponseNotFound("<h2>product not found</h2>")
      
