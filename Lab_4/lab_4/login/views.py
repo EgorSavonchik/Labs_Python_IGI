@@ -8,6 +8,8 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from .forms import UserCreateForm 
 from store.models import Client
+import requests
+
 
 class RegisterFormView(FormView) :
     form_class = UserCreateForm
@@ -31,8 +33,11 @@ class RegisterFormView(FormView) :
     
 class LoginFormView(FormView) :
     form_class = AuthenticationForm
-
+    quote = requests.get('https://favqs.com/api/qotd').json()
     template_name = 'login.html'
+    print(quote)
+    def get(self, request) :
+        return render(request, 'login.html', context={'form' : self.form_class(), 'quote' : self.quote['quote']['body']})
 
     success_url = '/'
 
