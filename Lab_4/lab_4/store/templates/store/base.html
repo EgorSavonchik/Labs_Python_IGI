@@ -11,8 +11,39 @@
             <a href="/" class="logo">Shop</a>
         </div>
         <div id="subheader">
-            <div class="cart">
+                Current Date: <span id='date'></span>
+                 | Current time: <span id='time'></span>
+                 | Current time zone: <span id='zone'></span>
+            <script>
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                let mm = today.getMonth() + 1; // Months start at 0!
+                let dd = today.getDate();
+                let h = today.getHours();
+                if (h<10)
+                    h = '0' + h;
+                let min = today.getMinutes();
+                if (min < 10)
+                    min = '0' + min;
+                let sec = today.getSeconds();
+                if (sec < 10)
+                    sec = '0' + sec;
 
+                if (dd < 10) dd = '0' + dd;
+                if (mm < 10) mm = '0' + mm;
+
+                let formattedToday = dd + '/' + mm + '/' + yyyy;
+                let time = h+":"+min+":"+sec; 
+                let tz = -(new Date().getTimezoneOffset() / 60);
+                if(tz>0){
+                    tz = "+" + tz;
+                }
+                tz = "UTC" + tz;
+                document.getElementById('date').innerHTML=formattedToday;
+                document.getElementById('time').innerHTML=time;
+                document.getElementById('zone').innerHTML=tz;
+            </script>
+            <div class="cart">
                 {% if user.is_authenticated %}
                 {% with total_items=cart|length %}
                 {% if cart|length > 0 %}

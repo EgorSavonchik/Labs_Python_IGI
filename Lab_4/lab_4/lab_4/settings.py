@@ -15,10 +15,8 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Определите путь к папке с базами данных GeoIP
-GEOIP_PATH = os.path.join(BASE_DIR, 'geoip/')
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'login.CustomUser'
 CART_SESSION_ID = 'cart'
@@ -38,6 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'login.apps.LoginConfig',
+    'statistic.apps.StatisticConfig',
     'order.apps.OrderConfig',
     'store.apps.StoreConfig',
     'cart.apps.CartConfig',
@@ -72,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 'cart.context_processors.cart',
             ],
         },

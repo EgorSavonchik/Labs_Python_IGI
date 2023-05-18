@@ -5,9 +5,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
 from .forms import ProductForm
 from django.core.exceptions import PermissionDenied
-from django.contrib.gis.geoip2 import GeoIP2
 import requests
-import json
 
 def product_list(request, product_type_name = None):
     product_type = None
