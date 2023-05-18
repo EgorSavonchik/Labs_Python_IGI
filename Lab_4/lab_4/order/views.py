@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from .models import OrderItem
-#from .forms import OrderCreateForm
 from cart.cart import Cart
-from store.models import Client
+from store.models import Client, Product
 from .models import Order
+from django.core.exceptions import PermissionDenied
+
 
 def order_create(request):
+    if not request.user.is_authenticated :
+        raise PermissionDenied("You do not have access to this page.")
+
     cart = Cart(request)
     if request.method == 'POST':        
         order = Order.objects.create(client = Client.objects.filter(email=request.user.email).first())
@@ -15,6 +19,9 @@ def order_create(request):
                                         product=item['product'],
                                         price=item['cost'],
                                         quantity=item['quantity'])
+            item['product'].purchase_count += item['quantity']
+            item['product'].save()
+
         # очистка корзины
         cart.clear()
         return render(request, 'order/created.html',

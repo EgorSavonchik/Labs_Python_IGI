@@ -24,7 +24,9 @@
         {% else %}
         Product
         {% endif %}
+        {% if user.is_staff %}
         <a href="/create/">Create Product</a>
+        {% endif %}
     </h1>
     {% for product in products %}
     <div class="item">

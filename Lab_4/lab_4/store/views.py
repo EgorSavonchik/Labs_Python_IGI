@@ -4,6 +4,10 @@ from cart.forms import CartAddProductForm
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
 from .forms import ProductForm
+from django.core.exceptions import PermissionDenied
+from django.contrib.gis.geoip2 import GeoIP2
+import requests
+import json
 
 def product_list(request, product_type_name = None):
     product_type = None
@@ -18,20 +22,26 @@ def product_list(request, product_type_name = None):
                   {
                       'type': type,
                       'types': types,
-                      'products': products
+                      'products': products,
                   })
 
 
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id)
     cart_product_form = CartAddProductForm()
+    joke = requests.get('https://official-joke-api.appspot.com/jokes/programming/random').json()[0]
+
     return render(request, 'store/product/detail.html', {'product': product,
-                                                   'cart_product_form': cart_product_form})
+                                                   'cart_product_form': cart_product_form,
+                                                   'joke': joke['setup'] + joke['punchline']})
 
 
  
 # сохранение данных в бд
 def product_create(request):
+    if not request.user.is_staff:
+        raise PermissionDenied("You do not have access to this page.")
+
     form = ProductForm()
 
     if request.method == "POST":
@@ -53,7 +63,9 @@ def product_create(request):
  
 # изменение данных в бд
 def product_edit(request, id):
-    
+    if not request.user.is_staff:
+        raise PermissionDenied("You do not have access to this page.")
+
     try:
         product = Product.objects.get(id=id)
         form = ProductForm(initial={'name':product.name, 'producer':product.producer,
@@ -78,6 +90,9 @@ def product_edit(request, id):
      
 # удаление данных из бд
 def product_delete(request, id):
+    if not request.user.is_staff:
+        raise PermissionDenied("You do not have access to this page.")
+
     try:
         product = Product.objects.get(id=id)
         product.delete()

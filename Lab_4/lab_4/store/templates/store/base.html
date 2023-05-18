@@ -12,6 +12,8 @@
         </div>
         <div id="subheader">
             <div class="cart">
+
+                {% if user.is_authenticated %}
                 {% with total_items=cart|length %}
                 {% if cart|length > 0 %}
                 In cart:
@@ -22,6 +24,8 @@
                 Cart empty
                 {% endif %}
                 {% endwith %}
+                {% endif %}
+
                 {% if user.is_authenticated %}
                 | {{ user.username }} |
                 <a href="{% url 'login:logout' %}">Out</a>

@@ -40,6 +40,7 @@ class Product(models.Model) :
     quantity = models.IntegerField()
     description = models.TextField()
     image = models.ImageField(upload_to='product/%Y/%m/%d', blank=True)
+    purchase_count = models.PositiveIntegerField(default=0)
     UNITS = (
         ('L', 'liter'),
         ('KG', 'kilogramm'),
