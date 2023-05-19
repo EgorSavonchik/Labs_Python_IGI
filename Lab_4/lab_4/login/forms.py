@@ -3,6 +3,17 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
+from datetime import date, datetime
+
+def validate_age(value):
+    today = date.today()
+    age = today.year - value.year - int((today.month, today.day) < (value.month, value.day))
+    print(today.year)
+    print(value.year)
+    print(age)
+    if int(age) < 18:
+        raise ValidationError("Вы должны быть старше 18 лет.")
 
 class UserCreateForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -10,7 +21,7 @@ class UserCreateForm(UserCreationForm):
                                 help_text='Enter first name')
     last_name = forms.CharField(max_length=200,
                                 help_text='Enter last name')
-    date_of_birth = forms.DateField()
+    date_of_birth = forms.DateField(validators=[validate_age])
     phone_number = forms.CharField(max_length=50,
                                     help_text='Enter phone number',
                                     validators=[RegexValidator(
@@ -38,4 +49,11 @@ class UserCreateForm(UserCreationForm):
             user.save()
         
         return user
+    
+    '''def clean_date_of_birth(self):
+        date_of_birth = self.cleaned_data['date_of_birth']
+
+        if not validate_age(date_of_birth):
+            raise forms.ValidationError("Вы должны быть старше 18 лет.")
+        return date_of_birth'''
     
