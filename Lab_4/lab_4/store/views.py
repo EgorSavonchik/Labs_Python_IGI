@@ -19,7 +19,6 @@ def product_list(request, product_type_name = None):
     sort = request.GET.get('sort')
     if sort == 'ascending':
         products = products.order_by('cost')
-
     elif sort == 'descending':
         products = products.order_by('-cost')
 

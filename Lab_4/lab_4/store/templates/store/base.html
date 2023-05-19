@@ -9,6 +9,9 @@
     <body>
         <div id="header">
             <a href="/" class="logo">Shop</a>
+            {% if user.is_superuser %}
+            <a href="/statistic/">Statistic</a>
+            {% endif %}
         </div>
         <div id="subheader">
                 Current Date: <span id='date'></span>

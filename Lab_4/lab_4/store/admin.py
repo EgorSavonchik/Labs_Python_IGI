@@ -6,6 +6,7 @@ from .models import Product, Producer, ProductType, Client
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin) :
     list_display = ['name', 'producer', 'image', 'cost', 'type', 'units']
+    list_filter = ['producer', 'type']
 
 @admin.register(Producer)
 class ProducerAdmin(admin.ModelAdmin) :

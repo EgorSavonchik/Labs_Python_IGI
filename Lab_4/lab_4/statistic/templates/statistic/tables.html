@@ -26,11 +26,15 @@
               {% for product in product_table %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ product.name }}</td>
+                    <td><a href="/statistic/tables/{{ product.id }}">{{ product.name }}</a></td>
                     <td>{{ product.purchase_count }}</td>
                 </tr>
               {% endfor %}
             </tbody>
           </table>
+          <br>
+          <form action="/statistic/" method="get">
+            <button type="submit">Back</button>
+          </form>
     </body>
 </html>
