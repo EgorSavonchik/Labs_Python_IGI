@@ -3,7 +3,7 @@ from order.models import Order
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from io import BytesIO
+from store.models import Product
 from .forms import StatisticForm
 import os
 from django.conf import settings
@@ -34,3 +34,8 @@ def statistic_show(request) :
         plt.clf()
         return render(request, 'statistic/statistic.html')
 
+def tables_show(request):
+    arr = list(Product.objects.all())
+    arr.sort(key = lambda x:x.purchase_count, reverse=True)
+
+    return render(request, 'statistic/tables.html', context={'product_table':arr})

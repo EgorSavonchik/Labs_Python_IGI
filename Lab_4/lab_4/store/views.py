@@ -16,6 +16,13 @@ def product_list(request, product_type_name = None):
         product_type = get_object_or_404(ProductType, name = product_type_name)
         products = products.filter(type = product_type)
 
+    sort = request.GET.get('sort')
+    if sort == 'ascending':
+        products = products.order_by('cost')
+
+    elif sort == 'descending':
+        products = products.order_by('-cost')
+
     return render(request, 'store/product/list.html',
                   {
                       'type': type,

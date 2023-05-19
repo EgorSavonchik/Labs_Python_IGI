@@ -45,6 +45,7 @@ class B:
 
 
 class C(A, B):
+    _X=5
     pass
 
 
@@ -63,7 +64,7 @@ c_ser = ser.dumps(c)
 c_des = ser.loads(c_ser)
 
 print(c_des)
-print(c_des.x)
+print(c_des._X)
 print(c_des.my_sin(10))
 #print(c_des.prop)
 print(C_des.stat())
