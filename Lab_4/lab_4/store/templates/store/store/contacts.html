@@ -1,0 +1,25 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block head %}
+    <meta name="description" content="Список контактов работников">
+    <meta name="author" content = "Egor Savonchik">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h2>Workers info</h2>
+    {% for worker in workers %}
+        <section>
+            <hr>
+            <p>{{ worker.worker.firstName }} {{ worker.worker.lastName }}</p>
+            <img src = "{{ worker.image.url }}" width="200" height="200" title="Фото сотрудника">
+            <p>{{ worker.description }}</p>
+            <p>Mail: {{ worker.worker.email }}</p>
+            <p>Phone number: {{ worker.worker.phone_number }}</p>
+        </section>
+    {% endfor %}
+</main>
+{% endblock %}

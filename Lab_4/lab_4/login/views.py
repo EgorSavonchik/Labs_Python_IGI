@@ -7,7 +7,6 @@ from django.views.generic.base import View
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from .forms import UserCreateForm 
-from store.models import Client
 import requests
 
 
@@ -20,12 +19,6 @@ class RegisterFormView(FormView) :
     def form_valid(self, form) -> HttpResponse:
         form.save()
 
-        Client.objects.create(first_name=form.cleaned_data['first_name'],
-                              last_name=form.cleaned_data['last_name'],
-                              date_of_birth=form.cleaned_data['date_of_birth'],
-                              email=form.cleaned_data['email'],
-                              phone_number=form.cleaned_data['phone_number']).save()
-
         return super(RegisterFormView, self).form_valid(form)
     
     def form_invalid(self, form) -> HttpResponse:
@@ -35,7 +28,7 @@ class LoginFormView(FormView) :
     form_class = AuthenticationForm
     quote = requests.get('https://favqs.com/api/qotd').json()
     template_name = 'login.html'
-    print(quote)
+
     def get(self, request) :
         return render(request, 'login.html', context={'form' : self.form_class(), 'quote' : self.quote['quote']['body']})
 
@@ -52,3 +45,7 @@ class LogoutView(View):
         logout(request)
 
         return HttpResponseRedirect('/')
+    
+class AccountView(View) :
+    def get(self, request):
+        return render(request, 'personal_account.html')

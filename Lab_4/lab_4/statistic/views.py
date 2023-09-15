@@ -152,7 +152,8 @@ def predict_show(request, id):
     for tmp in dict_for_plot:
         x_list.append(tmp)
         y_list.append(dict_for_plot[tmp])
-
+    
+    plt.figure().set_figwidth(len(x_list)//1.5);
     plt.plot(x_list,y_list)
     plt.xticks(rotation=340)
     plt.savefig(os.path.join(settings.MEDIA_ROOT, 'predict.jpg'), format='jpg')

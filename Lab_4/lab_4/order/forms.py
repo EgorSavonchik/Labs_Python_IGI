@@ -1,8 +1,5 @@
-'''from django import forms
-from .models import Order
+from django import forms
 
 
-class OrderCreateForm(forms.ModelForm):
-    class Meta:
-        model = Order
-        fields = ['client']'''
+class CouponApplyForm(forms.Form):
+    code = forms.CharField()

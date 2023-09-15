@@ -1,0 +1,27 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    {% for review in reviews %}
+        <section>
+            <h3>{{ review.title }}</h3>
+            <p>{{ review.text }}</p>
+            <p>
+                {% for i in "x"|rjust:review.gradle %}
+                    ★
+                {% endfor %}
+            </p>
+            <p>{{ review.owner.first_name }}</p>
+            <p>{{ review.date_of_creation }}</p>
+            <hr>
+        </section>
+    {% endfor %}
+    
+    {% if user.is_authenticated %}
+        <a href="{% url 'login:personal_account' %}">Create review</a>
+    {% else %}
+        <a href="{% url 'login:register' %}">Create review</a>
+    {% endif %}
+</main>
+{% endblock %}

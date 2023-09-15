@@ -1,0 +1,49 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}About copmany{% endblock %}
+
+{% block head %}
+    <meta name="description" content="Информация про компанию">
+    <meta name="author" content = "Egor Savonchik">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h1>About company</h1>
+    <span translate="no"> Savonchik chemistry</span> - a young company specializing in the sale of household chemicals
+    <h2>Company videos</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/C32v0SOziEg?si=BK4QeFgPg0Y6UZBW?autoplay=0&controls=0&showinfo=0&rel=0" 
+        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+        gyroscope; picture-in-picture; web-share" allowfullscreen>
+    </iframe>
+    <h2>History by year</h2>
+    {% for event in history %}
+        <article>
+            <hr>
+            <p>{{ event.year }}</p>
+            <p>{{ event.event }}</p>
+        </article>
+    {% endfor %}
+    <h2>Requisites</h2>
+    <section>
+        <p>МТС: +375 (33)3-022-482</p>
+        <p>email: egorsavonchik1@gmail.com</p>
+    </section>
+    <h2>Logo</h2>
+    <img src="{% static "img/logotip.jpg" %}" title = "Логотип компании">
+    <h2>Certificate</h2>
+    <section dir="lte">
+        <p>2023 © Интернет-магазин "Savonchik chemistry". ЧТУП «СолигорскХимТорг», УНП 590828925.</p>
+        <p>Государственная регистрация: Солигорский областной исполнительный комитет от 16.01.2008г №590828925. 
+        231335, Минская обл., Солигорский р-н, г. Солигорск, ул. Октябрьская, д. 103</p>
+        <p>Регистрационный номер в Торговом реестре Республики Беларусь 494498 от 21.10.2020</p>
+        <p>Номер и адрес электронной почты лица, уполномоченного продавцом рассматривать обращения покупателей 
+        о нарушении их прав, предусмотренных законодательством о защите прав потребителей:
+        7882, Время работы с 09:00 до 21:00 без выходных</p>
+        <p>Номер уполномоченных рассматривать обращения покупателей в соответствии с законодательством об обращениях 
+        граждан и юридических лиц: Отдел экономики Ивьевского районного исполнительного комитета +375 (1595) 2-23-63.</p>
+    </section>
+    
+</main>
+{% endblock %}

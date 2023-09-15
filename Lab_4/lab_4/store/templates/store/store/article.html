@@ -1,0 +1,20 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Article{% endblock %}
+
+{% block head %}
+    <meta name="description" content="Информация о конкретной статье">
+    <meta name="author" content = "Egor Savonchik">
+{% endblock %}
+
+{% block content %}
+<article>
+    <h2>{{ article.title }}</h2>
+    <img src="{{ article.image.url }}">
+    <p>{{ article.content }}</p>
+</article>
+<footer>
+    <a href="{% url "store:news" %}">Back</a>
+</footer>
+{% endblock %}

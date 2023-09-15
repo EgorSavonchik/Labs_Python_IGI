@@ -5,10 +5,16 @@
         <meta charset="utf-8" />
         <title>{% block title %}Shop{% endblock %}</title>
         <link href="{% static "css/base.css" %}" rel="stylesheet">
+        <link rel="shortcut icon" href="/media/shortcut/site_icon.jpg" />
+        {% block head %}{% endblock %}
     </head>
     <body>
         <div id="header">
             <a href="/" class="logo">Shop</a>
+            <a href="{% url "store:home_page" %}">Home</a>
+            <a href="{% url "store:news" %}">News</a>
+            <a href="{% url "store:frequently_questions" %}">FAQ</a>
+            <a href="{% url "store:reviews" %}">Reviews</a>
             {% if user.is_superuser %}
             <a href="/statistic/">Statistic</a>
             {% endif %}
@@ -64,8 +70,8 @@
                 | {{ user.username }} |
                 <a href="{% url 'login:logout' %}">Out</a>
                 {% else %}
-                <a href="{% url 'login:login' %}">Sign up</a>
-                <a href="{% url 'login:register' %}">Sign in</a>
+                <a href="{% url 'login:login' %}">Sign in</a>
+                <a href="{% url 'login:register' %}">Sign up</a>
                 {% endif %}
             </div>
         </div>
@@ -73,4 +79,18 @@
             {% block content %}{% endblock %}
         </div>
     </body>
+    <tail>
+        <br><hr><br>
+        <nav>
+            <a href="{% url 'store:about_company' %}">About company </a>
+            <a href="{% url 'store:contacts' %}">Contacts </a>
+            <a href="{% url 'store:privacy_policy' %}">Privacy policy</a>
+            <a href="{% url 'store:vacancies' %}">Vacancies</a>
+            {% if user.is_staff %}
+                <a href="{% url 'store:coupons' %}">Coupons</a>
+            {% endif %}
+            <a href = "{% url 'store:miscellaneous' %}">Miscellaneous</a>
+        </nav>
+        
+    </tail>
 </html>

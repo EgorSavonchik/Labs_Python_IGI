@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create review</title>
+    </head>
+    <body>
+        <main>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Create review</button>
+            </form>
+        </main>
+    </body>
+</html>

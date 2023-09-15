@@ -18,15 +18,27 @@ def validate_age(value):
 class UserCreateForm(UserCreationForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField(max_length=200,
-                                help_text='Enter first name')
+                                help_text='Enter first name',
+                                validators=[RegexValidator(
+            regex=r'^[\w]+$',
+            message='Name must consist of letters',
+        )])
     last_name = forms.CharField(max_length=200,
-                                help_text='Enter last name')
-    date_of_birth = forms.DateField(validators=[validate_age])
+                                help_text='Enter last name',
+                                validators=[RegexValidator(
+            regex=r'^[\w]+$',
+            message='Name must consist of letters',
+        )])
+    date_of_birth = forms.DateField(validators=[validate_age], 
+                                    help_text="Format YYYY-MM-DD",
+                                    error_messages={
+            'invalid': 'Format YYYY-MM-DD',
+        })
     phone_number = forms.CharField(max_length=50,
                                     help_text='Enter phone number',
                                     validators=[RegexValidator(
-            regex=r'^(\+375 \(29\) [0-9]{3}-[0-9]{2}-[0-9]{2})$',
-            message='Format +375 (29) XXX-XX-XX',
+            regex=r'^(\+375 \([0-9]{2}\) [0-9]{3}-[0-9]{2}-[0-9]{2})$',
+            message='Format +375 (XX) XXX-XX-XX',
         )])
     
     class Meta:
@@ -49,11 +61,4 @@ class UserCreateForm(UserCreationForm):
             user.save()
         
         return user
-    
-    '''def clean_date_of_birth(self):
-        date_of_birth = self.cleaned_data['date_of_birth']
-
-        if not validate_age(date_of_birth):
-            raise forms.ValidationError("Вы должны быть старше 18 лет.")
-        return date_of_birth'''
     

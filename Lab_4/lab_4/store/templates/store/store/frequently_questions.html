@@ -1,0 +1,22 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block head %}
+    <meta name="description" content="Список часто задаваемых вопросов с ответами">
+    <meta name="author" content = "Egor Savonchik">
+{% endblock %}
+
+{% block content %}
+<main> 
+    <h2>Popular question</h2>
+    {% for question in questions %}
+        <details>
+            <summary>{{ question.question }}</summary>
+            <p>{{ question.answer }}</p>
+      </details>
+      <p>{{ question.date_of_creation }}</p>
+    {% endfor %}
+</main>
+{% endblock %}

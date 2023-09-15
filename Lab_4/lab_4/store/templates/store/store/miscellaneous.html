@@ -1,0 +1,81 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Miscellaneous{% endblock %}
+
+{% block content %}
+<main>
+    <section>
+        <h2>Листинг</h2>
+        <pre><code>
+            @require_POST
+            def cart_add(request, product_id):
+                if not request.user.is_authenticated :
+                    raise PermissionDenied("You do not have access to this page.")
+                
+                cart = Cart(request)
+                product = get_object_or_404(Product, id=product_id)<
+                form = CartAddProductForm(request.POST)
+                if form.is_valid():
+                    cd = form.cleaned_data
+                    cart.add(product=product,
+                             quantity=cd['quantity'],
+                             update_quantity=cd['update'])
+                return redirect('cart:cart_detail')
+        </code></pre>
+    </section>
+    <section>
+        <h2>Определение</h2>
+        <p><dfn>Определение</dfn> - это второстепенный член предложения, который обозначает признак, качество, свойство предмета или явления.</p>
+        <p><abbr><dfn>БГУИР</dfn></abbr> - белорусский государсвенный университет информатики и радиотехники</p>
+    </section>
+    <section>
+        <h2>Время в которое я это делаю</h2>
+        <time>2:34</time>
+    </section>
+    <section>
+        <br>
+        Программист — что это значит?<br>
+        Это сильный человек!<br>
+        Над программой не заплачет,<wbr>
+        А работать будет век,<wbr>
+    </section>
+    <section>
+        <h2>Видео</h2>
+        <video src="media/miscellaneous/video.mp4" controls width="400" height="200"></video>
+    </section>
+    <section>
+        <h2>Аудио</h2>
+        <audio src="media/miscellaneous/pesnya_bguir.mp3" controls></audio>
+    </section>
+    <section>
+        <br>
+        <img src="media/miscellaneous/small_icon.jpg"
+            srcset="media/miscellaneous/small_icon.jpg 100w,
+                    media/miscellaneous/medium_icon.jpg 500w,
+                    media/miscellaneous/large_icon.jpg 1000w"
+            sizes="(max-width: 480px) 100px,
+                (max-width: 800px) 500px, 1000px"
+            title="Иконка сайта">
+    </section>
+    <section>
+        <h2>Таблица</h2>
+        <table>
+            <tr>
+                <th id = "col1">Заголовок 1</th>
+                <th>Заголовок 2</th>
+                <th>Заголовок 3</th>
+            </tr>
+            <tr>
+                <td headers="col1">Ячейка 1</td>
+                <td>Ячейка 2</td>
+                <td>Ячейка 3</td>
+            </tr>
+            <tr>
+                <td colspan="2">Объединенные ячейки</td>
+                <td>Ячейка 4</td>
+            </tr>
+          </table>          
+    </section>
+</main>
+{% endblock %}

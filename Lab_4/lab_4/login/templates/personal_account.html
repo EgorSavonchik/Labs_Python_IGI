@@ -1,0 +1,14 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <h3>{{ user.username }}</h3>
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
+        <p>{{ user.email }}</p>
+        <p>{{ user.phone_number }}</p>
+    </main>
+    <footer>
+        <a href="{% url 'store:create_review' %}">Create review</a>
+    </footer>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Coupons{% endblock %}
+
+{% block head %}
+    <meta name="description" content="Список активных и архивированных купонов">
+    <meta name="author" content = "Egor Savonchik">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h2>Coupons</h2>
+    <h3>Active</h3>
+    {% for coupon in active_coupons %}
+        <p>Code: {{ coupon.code }}</p>
+        <p>Discount: {{ coupon.discount }}%</p>
+        <p>Date of creation: {{ coupon.date_of_creation }}</p>
+    {% endfor %}
+    <hr><h3>Archived</h3>
+    {% for coupon in deactive_coupons %}
+        <p>Code: {{ coupon.code }}</p>
+        <p>Discount: {{ coupon.discount }}%</p>
+        <p>Date of creation: {{ coupon.date_of_creation }}</p>
+    {% endfor %}
+</main>
+{% endblock %}

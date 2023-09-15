@@ -1,0 +1,22 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Vacancies{% endblock %}
+
+{% block head %}
+    <meta name="description" content="Список доступных вакансий">
+    <meta name="author" content = "Egor Savonchik">
+{% endblock %}
+
+{% block content %}
+<h2>Vacancy</h2>
+{% for vacancy in vacancies %}
+    <section>
+        <hr>
+        <h3>{{ vacancy.name }}</h3>
+        <p>Salary up to {{ vacancy.salary }}</p>
+        <p>{{ vacancy.description }}</p>
+        <p>{{ vacancy.date_of_creation }}</p>
+    </section>
+{% endfor %}
+{% endblock %}

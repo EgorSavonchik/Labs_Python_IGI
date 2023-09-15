@@ -1,0 +1,36 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Home page{% endblock %}
+
+{% block head %}
+    <meta name="description" content="главная страница магазина">
+    <meta name="author" content = "Egor Savonchik">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h2>Last news</h2>
+    <section>
+        <p>{{ latest_article.title }}</p>
+        <p>{{ latest_article.short_content }}</p>
+        <img src="{{ latest_article.image.url }}" width="200" height="200">
+    </section>
+    <h2>About partners</h2>
+    {% for partner in partners %}
+        <section>
+            <a href="{{ partner.link }}">{{ partner.partner_name }}</a>
+            <p>{{ partner.description }}</p>
+            <img src="{{ partner.image.url }}" width="200" height="200">
+        </section>
+    {% endfor %}
+<h2>Advertisement block</h2>
+</main>
+<aside>
+{% for adv in advertisement %}
+    <a href="{{ adv.link }} ">
+        <img src = "{{ adv.image.url }}" width="200" height="200">
+    </a>
+{% endfor %}
+</aside>
+{% endblock %}

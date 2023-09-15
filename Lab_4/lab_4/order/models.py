@@ -1,10 +1,22 @@
 from django.db import models
-from store.models import Product, Client
-
+from store.models import Product, Coupon
+from login.models import CustomUser
+from decimal import Decimal
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Order(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
+
+    coupon = models.ForeignKey(Coupon,
+                                on_delete=models.SET_DEFAULT,
+                                default=None,
+                                null=True,
+                                blank=True)
+    discount = models.IntegerField(default=0,
+                                        validators=[MinValueValidator(0),
+                                                    MaxValueValidator(100)])
+    total_cost = models.IntegerField(default=0)
 
     class Meta:
         ordering = ('-created',)
@@ -15,7 +27,10 @@ class Order(models.Model):
         return 'Order {}'.format(self.id)
 
     def get_total_cost(self):
-        return sum(item.get_cost() for item in self.items.all())
+        total_cost = sum(item.get_cost() for item in self.items.all())
+        return total_cost - total_cost * (self.discount / Decimal('100'))
+    
+    
 
 
 class OrderItem(models.Model):
