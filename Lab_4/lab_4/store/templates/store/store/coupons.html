@@ -6,22 +6,33 @@
 {% block head %}
     <meta name="description" content="Список активных и архивированных купонов">
     <meta name="author" content = "Egor Savonchik">
+    <link href="{% static "css/coupons.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <main>
     <h2>Coupons</h2>
     <h3>Active</h3>
-    {% for coupon in active_coupons %}
-        <p>Code: {{ coupon.code }}</p>
-        <p>Discount: {{ coupon.discount }}%</p>
-        <p>Date of creation: {{ coupon.date_of_creation }}</p>
-    {% endfor %}
+    <ul class="active-list">
+        {% for coupon in active_coupons %}
+        <li>
+            <p>Code: {{ coupon.code }}</p>
+            <p>Discount: {{ coupon.discount }}%</p>
+            <p>Date of creation: {{ coupon.date_of_creation }}</p>
+        </li>  
+        {% endfor %}
+    </ul>
+    
     <hr><h3>Archived</h3>
-    {% for coupon in deactive_coupons %}
-        <p>Code: {{ coupon.code }}</p>
-        <p>Discount: {{ coupon.discount }}%</p>
-        <p>Date of creation: {{ coupon.date_of_creation }}</p>
-    {% endfor %}
+    <ul class="deactive-list">
+        {% for coupon in deactive_coupons %}
+        <li>
+            <p>Code: {{ coupon.code }}</p>
+            <p>Discount: {{ coupon.discount }}%</p>
+            <p>Date of creation: {{ coupon.date_of_creation }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    
 </main>
 {% endblock %}

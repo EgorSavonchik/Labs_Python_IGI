@@ -6,6 +6,7 @@
 {% block head %}
     <meta name="description" content="Список часто задаваемых вопросов с ответами">
     <meta name="author" content = "Egor Savonchik">
+    <link href="{% static "css/frequently_questions.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -13,10 +14,13 @@
     <h2>Popular question</h2>
     {% for question in questions %}
         <details>
-            <summary>{{ question.question }}</summary>
+            <summary>
+                <p class="title">{{ question.question }}</p>
+                <p class="date">{{ question.date_of_creation }}</p>
+            </summary>
             <p>{{ question.answer }}</p>
-      </details>
-      <p>{{ question.date_of_creation }}</p>
+        </details>
+        <p></p>
     {% endfor %}
 </main>
 {% endblock %}

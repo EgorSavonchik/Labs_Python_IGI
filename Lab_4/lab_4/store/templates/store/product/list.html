@@ -1,8 +1,14 @@
 {% extends "store/base.html" %}
 {% load static %}
+
 {% block title %}
 {% if type %}{{ type.name }}{% else %}Products{% endif %}
 {% endblock %}
+
+{% block head %}
+<link href="{% static "css/list.css" %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <div id="sidebar">
     <h3>Type</h3>
@@ -10,6 +16,7 @@
         <li {% if not type %}class="selected"{% endif %}>
             <a href="{% url 'store:product_list' %}">All</a>
         </li>
+
         {% for c in types %}
         <li {% if type.name == c.name %}class="selected" {% endif %}>
             <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
@@ -17,29 +24,28 @@
         {% endfor %}
     </ul>
 </div>
-<div id="main" class="product-list">
-    <h1>
-        {% if type %}
-        {{ type.name }}
-        {% else %}
-        Product
-        {% endif %}
-        {% if user.is_staff %}
-        <a href="/create/">Create Product</a>
-        {% endif %}
-        <form action="{{ request.get_full_path }}" method="get">
-            <button type="submit" name="sort" value="ascending">Сортировать по возрастанию</button>
-            <button type="submit" name="sort" value="descending">Сортировать по убыванию</button>
-        </form>
-    </h1>
+<h1>
+    {% if type %}
+    {{ type.name }}
+    {% else %}
+    Product
+    {% endif %}
+    {% if user.is_staff %}
+    <a href="/create/">Create Product</a>
+    {% endif %}
+    <form action="{{ request.get_full_path }}" method="get">
+        <button type="submit" name="sort" value="ascending">Сортировать по возрастанию</button>
+        <button type="submit" name="sort" value="descending">Сортировать по убыванию</button>
+    </form>
+</h1>
+<div class="grid-container">
     {% for product in products %}
-    <div class="item">
+    <div>
         <a href="{{ product.get_absolute_url }}">
-            <img src="{% if product.image %}{{ product.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}">
-        </a>
-        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-        <br>
-        {{ product.cost }}
+            <img src="{% if product.image %}{{ product.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}" width="200" height="200">
+        </a><br>
+        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
+        Price: {{ product.cost }}
     </div>
     {% endfor %}
 </div>

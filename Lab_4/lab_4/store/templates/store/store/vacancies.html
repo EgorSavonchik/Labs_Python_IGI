@@ -6,16 +6,16 @@
 {% block head %}
     <meta name="description" content="Список доступных вакансий">
     <meta name="author" content = "Egor Savonchik">
+    <link href="{% static "css/vacancies.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <h2>Vacancy</h2>
 {% for vacancy in vacancies %}
-    <section>
-        <hr>
-        <h3>{{ vacancy.name }}</h3>
-        <p>Salary up to {{ vacancy.salary }}</p>
-        <p>{{ vacancy.description }}</p>
+    <section class="vacancy">
+        <h3 class="vacancy-name">{{ vacancy.name }}</h3>
+        <p class="vacancy-description">{{ vacancy.description }}</p>
+        <p class="vacancy-salary">Salary up to {{ vacancy.salary }}</p>
         <p>{{ vacancy.date_of_creation }}</p>
     </section>
 {% endfor %}

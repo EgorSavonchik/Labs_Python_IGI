@@ -6,16 +6,20 @@
 {% block head %}
     <meta name="description" content="Последние новости сайта">
     <meta name="author" content = "Egor Savonchik">
+    <link href="{% static "css/news.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <h2>News</h2>
-{% for article in articles %}
+<section class="news-list">
+    {% for article in articles %}
     <article>
-        <p>{{ article.title }}</p>
-        <img src = "{{ article.image.url }}">
-        <p>{{ article.short_content }} ...</p>
-        <a href="article/{{ article.id }}">read more</a>
+        <p><b>{{ article.title }}</b></p>
+        <img src = "{{ article.image.url }}" height="250" width="250">
+        <p class="short-content">{{ article.short_argument }}</p>
+        <a href="article/{{ article.id }}"><small>read more</small></a>
     </article>
-{% endfor %}
+    {% endfor %}
+</section>
+
 {% endblock %}

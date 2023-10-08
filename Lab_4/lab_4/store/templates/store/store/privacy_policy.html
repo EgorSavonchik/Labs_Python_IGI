@@ -6,13 +6,14 @@
 {% block head %}
     <meta name="description" content="Политика конфиденциальности сайта">
     <meta name="author" content = "Egor Savonchik">
+    <link href="{% static "css/privacy_policy.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <main>
     <h2 id = "up">Privacy policy</h2>
     {{ privacy | safe }}
-    <a href="/media/privacy_policy/privacy_policy.docx" download>Download privacy policy</a><br>
+    <a href="/media/privacy_policy/privacy_policy.docx" download class="ref-button">Download privacy policy</a><br>
     <a href="#up">Up</a>
 </main>
 {% endblock %}

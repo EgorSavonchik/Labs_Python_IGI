@@ -1,10 +1,18 @@
 {% extends "store/base.html" %}
 {% load static %}
 
+{% block title %}Reviews{% endblock %}
+
+{% block head %}
+    <meta name="description" content="Отзывы на сайт">
+    <meta name="author" content = "Egor Savonchik">
+    <link href="{% static "css/reviews.css" %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <main>
     {% for review in reviews %}
-        <section>
+        <section class="review">
             <h3>{{ review.title }}</h3>
             <p>{{ review.text }}</p>
             <p>
@@ -14,14 +22,13 @@
             </p>
             <p>{{ review.owner.first_name }}</p>
             <p>{{ review.date_of_creation }}</p>
-            <hr>
         </section>
     {% endfor %}
     
     {% if user.is_authenticated %}
-        <a href="{% url 'login:personal_account' %}">Create review</a>
+        <a class="ref-button" href="{% url 'login:personal_account' %}">Create review</a>
     {% else %}
-        <a href="{% url 'login:register' %}">Create review</a>
+        <a class="ref-button" href="{% url 'login:register' %}">Create review</a>
     {% endif %}
 </main>
 {% endblock %}

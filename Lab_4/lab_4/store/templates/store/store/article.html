@@ -6,13 +6,17 @@
 {% block head %}
     <meta name="description" content="Информация о конкретной статье">
     <meta name="author" content = "Egor Savonchik">
+    <link href="{% static "css/article.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-<article>
-    <h2>{{ article.title }}</h2>
-    <img src="{{ article.image.url }}">
-    <p>{{ article.content }}</p>
+<article class="article-container">
+    <section class="article-info">
+        <h2>{{ article.title }}</h2> 
+        <img src="{{ article.image.url }}">
+        <p>{{ article.date_of_creation }}</p>
+    </section>
+    <p class="article-content">{{ article.content }}</p>
 </article>
 <footer>
     <a href="{% url "store:news" %}">Back</a>

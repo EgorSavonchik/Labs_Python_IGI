@@ -6,44 +6,45 @@
 {% block head %}
     <meta name="description" content="Информация про компанию">
     <meta name="author" content = "Egor Savonchik">
+    <link href="{% static "css/about_company.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <main>
     <h1>About company</h1>
-    <span translate="no"> Savonchik chemistry</span> - a young company specializing in the sale of household chemicals
+    <p><dfn translate="no" class="company-name"> Savonchik chemistry</dfn> - a young company specializing in the sale of household chemicals</p>
     <h2>Company videos</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/C32v0SOziEg?si=BK4QeFgPg0Y6UZBW?autoplay=0&controls=0&showinfo=0&rel=0" 
+    <iframe class="video" width="560" height="315" src="https://www.youtube.com/embed/C32v0SOziEg?si=BK4QeFgPg0Y6UZBW?autoplay=0&controls=0&showinfo=0&rel=0" 
         title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
         gyroscope; picture-in-picture; web-share" allowfullscreen>
     </iframe>
     <h2>History by year</h2>
+    <ul class="history">
     {% for event in history %}
-        <article>
-            <hr>
-            <p>{{ event.year }}</p>
-            <p>{{ event.event }}</p>
-        </article>
+        <li class="history-item">
+            <p class="history-year">{{ event.year }}</p>
+            <p class="history-description">{{ event.event }}</p>
+        </li>
     {% endfor %}
+    </ul>
+
     <h2>Requisites</h2>
     <section>
-        <p>МТС: +375 (33)3-022-482</p>
-        <p>email: egorsavonchik1@gmail.com</p>
+        <p class="requisite">МТС: +375 (33)3-022-482</p>
+        <p class="requisite">email: egorsavonchik1@gmail.com</p>
     </section>
     <h2>Logo</h2>
-    <img src="{% static "img/logotip.jpg" %}" title = "Логотип компании">
+    <img class="logotip" src="{% static "img/logotip.jpg" %}" title = "Логотип компании" height="200" width="200">
     <h2>Certificate</h2>
-    <section dir="lte">
-        <p>2023 © Интернет-магазин "Savonchik chemistry". ЧТУП «СолигорскХимТорг», УНП 590828925.</p>
-        <p>Государственная регистрация: Солигорский областной исполнительный комитет от 16.01.2008г №590828925. 
-        231335, Минская обл., Солигорский р-н, г. Солигорск, ул. Октябрьская, д. 103</p>
-        <p>Регистрационный номер в Торговом реестре Республики Беларусь 494498 от 21.10.2020</p>
-        <p>Номер и адрес электронной почты лица, уполномоченного продавцом рассматривать обращения покупателей 
-        о нарушении их прав, предусмотренных законодательством о защите прав потребителей:
-        7882, Время работы с 09:00 до 21:00 без выходных</p>
-        <p>Номер уполномоченных рассматривать обращения покупателей в соответствии с законодательством об обращениях 
-        граждан и юридических лиц: Отдел экономики Ивьевского районного исполнительного комитета +375 (1595) 2-23-63.</p>
+    <section class="sertificate">
+        <h3>Сертификат</h3>
+        <p>ООО «Приносим радость»</p>
+        <p>Юридический адрес: 220073, Республика Беларусь, г. Минск, ул. Смолячкого, д. 40, кв. 26, каб. 2</p>
+        <p>УНП 193067319</p>
+        <p>Адрес для почтовых отправлений: 220117, а/я 162.</p>
+        <p>Свидетельство о государственной регистрации №193067319 от 19 апреля 2018 г. выдано Минским горисполкомом</p>
+        <p>Зарегистрировано Министерством информации Республики Беларусь 11 мая 2018 г. в Государственном реестре изготовителей и распространителей бытовой химии изданий Республики Беларусь в качестве распространителя бытовой химии за №3/1656</p>
+        <p>Зарегистрирован в Торговом реестре Республики Беларусь 31 мая 2018 г. за №416870</p>
     </section>
-    
 </main>
 {% endblock %}

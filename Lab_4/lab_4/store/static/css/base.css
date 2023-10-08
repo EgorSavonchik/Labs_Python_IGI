@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu);
 
-body {
+body {  
     margin:0;
     padding:0;
     font-family:helvetica, sans-serif;
@@ -13,6 +13,15 @@ h1, h2, h3, h4, h5 , h6 {
 a {
     text-decoration:none;
     color:#5993bb;
+}
+
+main {
+    padding:0 100px;
+    
+    background-image: url("../img/background.avif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 a:hover {
@@ -181,7 +190,6 @@ ul.errorlist {
     float:left;
     width: 96%;
     margin-right:-220px;
-    overflow:hidden;
 }
 
 .product-list .item {
@@ -297,6 +305,22 @@ ul.errorlist {
     clear:both;
 }
 
+.nav-bar {
+    position: sticky;
+    top: 0;
+    background-color:#fff;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.nav-down {
+    position: sticky;
+    bottom: 0;
+    background:#fff;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 .recommendations.cart {
     width:60%;
     float:left;
@@ -328,3 +352,47 @@ form div.field {
     color:#666;
     border-radius:4px;
 }
+
+.ref-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #1d76ca;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+  
+.ref-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+.ref-nav a:link {
+    color: rgb(0, 200, 255); /* Цвет не посещенной ссылки */
+    text-decoration: none; 
+}
+
+.ref-nav a:visited {
+    color: purple; /* Цвет посещенной ссылки */
+}
+
+.ref-nav a:hover {
+    color: red; /* Цвет при наведении курсора */
+    text-decoration: underline; 
+}
+
+.ref-nav a:active {
+    color: green; /* Цвет при нажатии */
+}
+
+.ref-nav a:focus {
+    outline: 2px solid yellow; /* Обводка вокруг элемента в фокусе */
+}
+  

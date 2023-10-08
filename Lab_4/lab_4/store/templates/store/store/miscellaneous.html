@@ -3,6 +3,10 @@
 
 {% block title %}Miscellaneous{% endblock %}
 
+{% block head %}
+    <link href="{% static "css/miscellaneous.css" %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <main>
     <section>
@@ -24,47 +28,66 @@
                 return redirect('cart:cart_detail')
         </code></pre>
     </section>
-    <section>
+    <section itemscope itemtype="http://schema.org/DefinedTerm">
         <h2>Определение</h2>
-        <p><dfn>Определение</dfn> - это второстепенный член предложения, который обозначает признак, качество, свойство предмета или явления.</p>
-        <p><abbr><dfn>БГУИР</dfn></abbr> - белорусский государсвенный университет информатики и радиотехники</p>
+        <p><dfn itemprop="name">Определение</dfn> - <span itemprop="description">это второстепенный член предложения, который обозначает признак, качество, свойство предмета или явления.</span></p>
+        <p><abbr><dfn itemprop="name">БГУИР</dfn></abbr> - <span itemprop="description">белорусский государственный университет информатики и радиотехники</span></p>
     </section>
     <section>
         <h2>Время в которое я это делаю</h2>
         <time>2:34</time>
     </section>
     <section>
-        <br>
-        Программист — что это значит?<br>
-        Это сильный человек!<br>
-        Над программой не заплачет,<wbr>
-        А работать будет век,<wbr>
+        <p>
+            Программист — что это значит?<br>
+            Это сильный человек!<br>
+            Над программой не заплачет,<wbr>
+            А работать будет век,<wbr>
+
+            <p>Строка номер один<br/>Переводимая строка номер одиннеПереводимая строка номер один</p>
+            <p>Строка номер два<br/>Переводимая строка номер один<wbr>Переводимая строка номер один</p>
+            <p>Строка номер три<br/>Переводимая строка номер один<wbr>Переводимая строка номер один</p>
+            <p>Строка номер четыре<br/>Переводимая строка номер один<wbr>Переводимая строка номер один</p>
+
     </section>
     <section>
         <h2>Видео</h2>
-        <video src="media/miscellaneous/video.mp4" controls width="400" height="200"></video>
+        <figure class="video-container">
+            <video src="media/miscellaneous/video.mp4" controls width="400" height="200"></video>
+            <figcaption class="video-description">Видео льва</figcaption>
+        </figure>
     </section>
     <section>
         <h2>Аудио</h2>
-        <audio src="media/miscellaneous/pesnya_bguir.mp3" controls></audio>
+        <audio class="audio" src="media/miscellaneous/pesnya_bguir.mp3" controls></audio>
     </section>
     <section>
         <br>
-        <img src="media/miscellaneous/small_icon.jpg"
+        <figure>
+            <img src="media/miscellaneous/small_icon.jpg"
             srcset="media/miscellaneous/small_icon.jpg 100w,
-                    media/miscellaneous/medium_icon.jpg 500w,
-                    media/miscellaneous/large_icon.jpg 1000w"
+                    media/miscellaneous/medium_icon.jpg 300w,
+                    media/miscellaneous/large_icon.jpg 700w"
             sizes="(max-width: 480px) 100px,
-                (max-width: 800px) 500px, 1000px"
+                (max-width: 700px) 300px, 700px"
             title="Иконка сайта">
+        </figure>
+        <figure>
+            <img 
+                src="media/miscellaneous/small_icon.jpg"              
+                srcset="media/miscellaneous/medium_icon.jpg 300w, media/miscellaneous/large_icon.jpg 700w"  
+                sizes="(max-width: 600px) 50vw, (max-width: 1000px) 25vw, 300px"  
+                alt="Адаптивное изображение"
+                >
+        </figure>
     </section>
     <section>
-        <h2>Таблица</h2>
-        <table>
+        <table class="table">
+            <caption>Таблица</caption>
             <tr>
-                <th id = "col1">Заголовок 1</th>
-                <th>Заголовок 2</th>
-                <th>Заголовок 3</th>
+                <th class="table-header">Заголовок 1</th>
+                <th class="table-header">Заголовок 2</th>
+                <th class="table-header">Заголовок 3</th>
             </tr>
             <tr>
                 <td headers="col1">Ячейка 1</td>
@@ -75,7 +98,98 @@
                 <td colspan="2">Объединенные ячейки</td>
                 <td>Ячейка 4</td>
             </tr>
+            <tr>
+                <td>Ячейка 5</td>
+                <td>Ячейка 6</td>
+                <td></td>
+            </tr>
           </table>          
     </section>
+    <section hidden>
+        <p>тайная секция</p>
+    </section>
+    <h1>Управляющие элементы</h1>
+
+    <form class="form">
+        <!-- Text Input -->
+        <section >
+            <label for="textInput">Текстовое поле:</label>
+            <input tabindex="-1" type="text" id="textInput" name="textInput" required>
+        </section>
+
+        <!-- Email Input -->
+        <section>
+            <labe for="emailInput">Электронная почта:</label>
+            <input tabindex="-1" type="email" id="emailInput" name="emailInput" required>
+        </section>
+
+        <!-- Email Input -->
+        <section>
+            <labe for="emailInput">Выключенное поле:</label>
+            <input tabindex="-1" type="email" id="emailInput" name="emailInput" disabled>
+        </section>
+
+        <!-- Password Input -->
+        <section tabindex="-1">
+            <label for="passwordInput">Пароль:</label>
+            <input tabindex="-1" type="password" id="passwordInput" name="passwordInput" required>
+        </section>
+
+        <!-- Checkbox -->
+        <section>
+            <input type="checkbox" id="checkboxInput" name="checkboxInput">
+            <label  for="checkboxInput">Галочка</label>
+        </section>
+
+        <!-- Radio Buttons -->
+        <section>
+            <input type="radio" id="radioInput1" name="radioGroup" value="option1" required>
+            <label for="radioInput1">Опция 1</label>
+            <input type="radio" id="radioInput2" name="radioGroup" value="option2" required>
+            <label for="radioInput2">Опция 2</label>
+        </section>
+
+        <!-- Select Dropdown -->
+        <section>
+            <label for="selectInput">Выпадающий список:</label>
+            <select id="selectInput" name="selectInput" required>
+                <option value="">Выберите...</option>
+                <option value="option1">Опция 1</option>
+                <option value="option2">Опция 2</option>
+            </select>
+        </section>
+
+        <!-- Submit Button -->
+        <button type="submit">Отправить</button>
+    </form>
+    <section>
+        <h2>Различные шрифты</h2>
+        <ul class="example-list">
+            <li><i>курсив</i> - иностранные слова, технические термины</li>
+            <li><small>шрифт на 1 меньше стандартного</small> - «мелкий шрифт» (оговорки, уточнения)</li>
+            <li><strong>жирный акцент</strong> - важность текста</li>
+            <li><b>жирный шрифт</b> - привлечение внимания (ключевые слова)</li>
+            <li><em>акцентирование курсивом</em> - логическое ударение</li>
+            <li><s>зачеркнутый текст</s> - неточное или неактуальное содержимое</li>
+            <li><u>подчеркивание</u> - В HTML5 объявлен устаревшим</li>
+            <li><sup>нижний (верхний) индекс</sup></li>
+            <li><sub>нижний (верхний) индекс</sub></li>
+        </ul>
+    </section>
+    <section>
+        <p>Если ширина меньше 1000px будет красный цвет</p>
+        <figure class="width-indicator" role="presentation"></figure>
+        <p>Если высота будет меньше 1000px будет красный цвет</p>
+        <figure class="height-indicator" role="presentation"></figure>
+    </section>
+    <section>
+        <h3>Блок цитат</h3>
+        <p></p><q lang="ru">Цитата на русском</q><br></p>
+        <p></p><q lang="en">Quote on English</q><br></p>
+        <p></p><q lang="fr">Je vous en prie.</q></p>
+    </section>
+    <nav class="ref-nav">
+        <a href="">Новая ссылка</a>
+    </nav>
 </main>
 {% endblock %}
