@@ -26,11 +26,18 @@ class RegisterFormView(FormView) :
     
 class LoginFormView(FormView) :
     form_class = AuthenticationForm
-    quote = requests.get('https://favqs.com/api/qotd').json()
+    
+    '''quote = requests.get('https://favqs.com/api/qotd')
+
+    if(quote != None) :
+        quote = quote.json()
+    else :
+        quote = "Not Found"'''
+    
     template_name = 'login.html'
 
     def get(self, request) :
-        return render(request, 'login.html', context={'form' : self.form_class(), 'quote' : self.quote['quote']['body']})
+        return render(request, 'login.html', context={'form' : self.form_class()}) #'quote' : self.quote['quote']['body']'''})
 
     success_url = '/'
 

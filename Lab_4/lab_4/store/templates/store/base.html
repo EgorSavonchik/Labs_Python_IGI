@@ -12,12 +12,12 @@
         <div id="header" class="nav-bar">
             <nav class="ref-nav">
                 <a href="/" class="logo">Shop</a>
-                <a href="{% url "store:home_page" %}">Home</a>
-                <a href="{% url "store:news" %}">News</a>
-                <a href="{% url "store:frequently_questions" %}">FAQ</a>
-                <a href="{% url "store:reviews" %}">Reviews</a>
+                <a class="custom-button" href="{% url "store:home_page" %}">Home</a>
+                <a class="custom-button" href="{% url "store:news" %}">News</a>
+                <a class="custom-button" href="{% url "store:frequently_questions" %}">FAQ</a>
+                <a class="custom-button" href="{% url "store:reviews" %}">Reviews</a>
                 {% if user.is_superuser %}
-                <a href="/statistic/">Statistic</a>
+                <a class="custom-button" href="/statistic/">Statistic</a>
                 {% endif %}
             </nav> 
         </div>
@@ -77,21 +77,26 @@
                 {% endif %}
             </div>
         </div>
+        {% block header%}
+        {% endblock %}
         <main>
             {% block content %}{% endblock %}
         </main>
     </body>
-    <tail style="margin-top: 0px;" class="nav-down">
-        <hr style="margin-top: 0px;"><br>
-        <nav class="ref-nav">
-            <a href="{% url 'store:about_company' %}">About company </a>
-            <a href="{% url 'store:contacts' %}">Contacts </a>
-            <a href="{% url 'store:privacy_policy' %}">Privacy policy</a>
-            <a href="{% url 'store:vacancies' %}">Vacancies</a>
-            {% if user.is_staff %}
-                <a href="{% url 'store:coupons' %}">Coupons</a>
-            {% endif %}
-            <a href = "{% url 'store:miscellaneous' %}">Miscellaneous</a>
-        </nav>
+    <tail style="margin-top: 0px;">
+        <div class="nav-down">
+            <hr style="margin-top: 0px;">
+            <nav >
+                <a class="custom-button" href="{% url 'store:about_company' %}">About company </a>
+                <a class="custom-button" href="{% url 'store:contacts' %}">Contacts </a>
+                <a class="custom-button" href="{% url 'store:privacy_policy' %}">Privacy policy</a>
+                <a class="custom-button" href="{% url 'store:vacancies' %}">Vacancies</a>
+                {% if user.is_staff %}
+                    <a class="custom-button" href="{% url 'store:coupons' %}">Coupons</a>
+                {% endif %}
+                <a class="custom-button" href = "{% url 'store:miscellaneous' %}">Miscellaneous</a>
+            </nav>
+        </div>
     </tail>
+    <script src="{% static "js/custom_ref.js" %}"></script>
 </html>

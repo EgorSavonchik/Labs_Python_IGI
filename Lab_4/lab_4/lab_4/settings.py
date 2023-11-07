@@ -29,8 +29,8 @@ SECRET_KEY = 'django-insecure-p3*)4q*m8v(44mzg+t8=3co*hn2ajq7#5h_8&af1-#jkd85g8_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ["https://56ec-103-50-33-200.ngrok-free.app"]
 
 # Application definition
 
@@ -39,13 +39,13 @@ INSTALLED_APPS = [
     'statistic.apps.StatisticConfig',
     'order.apps.OrderConfig',
     'store.apps.StoreConfig',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
     'cart.apps.CartConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [

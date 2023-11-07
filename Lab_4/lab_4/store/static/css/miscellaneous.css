@@ -192,3 +192,113 @@ q[lang="ru"]::after {
 .form input[type="checkbox"]:checked + label, input[type="radio"]:checked + label {
     background-color: green;
 }
+
+
+
+.header-paralax {
+    background-image: url('https://goo.gl/TiDA5i');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+  }
+  
+  .header-paralax h1 {
+    text-align: center;
+    color: #e6e3e3;
+    text-shadow: 2px 3px 1px #111111;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    font-size: 6em;
+    padding: 10px 0;
+    margin-bottom: 0px;
+    margin-top: 20px;
+    padding-bottom: 0px;
+  }
+
+  .header-paralax h2 {
+    text-align: center;
+    color: #e6e3e3;
+    text-shadow: 2px 3px 1px #111111;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    font-size: 6em;
+    margin-top: 0px;
+    padding: 30px 0px;
+  }
+  
+  
+  main {
+    background: #f5f5f5;
+    position: relative;
+    font-family: 'Raleway', sans-serif;
+    color: #111111;
+  }
+  
+  .container {
+    padding: 0 26%;
+  }
+  
+  .container h1 {
+    padding: 1.2em 0 0 0;
+    font-size: 3.5em;
+    color: #212121;
+  }
+  .container h2 {
+    padding:0 0 0.8em 0.4em;
+    font-size:1.5em;
+  }
+  .container p {
+    padding-bottom: 1em;
+    font-size:1.6em;
+    line-height: 1.5;
+    color: #212121;
+  }
+
+  #age-verification-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 999; /* Разместить поверх всего остального */
+  }
+  
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный цвет */
+    z-index: 998; /* Ниже предупреждения */
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+
+  .row {
+    display: flex;
+  }
+  
+  .cell {
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 2px;
+  }
+  
+
+
+  td.selected {
+    background-color: lightgreen;
+  }
+  
+  td.selected-even {
+    background-color: lightblue;
+  }

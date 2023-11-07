@@ -51,3 +51,7 @@ class WorkerInfoAdmin(admin.ModelAdmin) :
 @admin.register(History)
 class HistoryAdmin(admin.ModelAdmin) :
     list_display =  [field.name for field in History._meta.get_fields()]
+
+@admin.register(RotationTime)
+class RotationTimeAdmin(admin.ModelAdmin) :
+    list_display =  [field.name for field in RotationTime._meta.get_fields()]

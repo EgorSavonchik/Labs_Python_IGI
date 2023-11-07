@@ -113,6 +113,21 @@ def about_company(request) :
     return render(request, "store/store/about_company.html", {"history" : history})
 
 def home_page(request) : 
+    if (request.method == "POST"):
+        try:
+            tmp = RotationTime.objects.get(id=1)
+        except RotationTime.DoesNotExist:
+            tmp = RotationTime.objects.create(id=1, time=10)
+
+        tmp.time = request.POST.get('time')
+        tmp.save()
+
+    try:
+        tmp = RotationTime.objects.get(id=1)
+    except RotationTime.DoesNotExist:
+        tmp = RotationTime.objects.create(id=1, time=10)
+
+
     partners = Partner.objects.all();
     advertisement = Advertisement.objects.all()
     if len(advertisement) > 3 :
@@ -121,7 +136,8 @@ def home_page(request) :
     latest_article = Article.objects.order_by("-date_of_creation").first()
 
     return render(request, "store/store/home_page.html", {"partners" : partners, "advertisement" : advertisement, 
-                                                          "latest_article" : latest_article})
+                                                          "latest_article" : latest_article, 
+                                                          "time": tmp.time})
 
 def news(request) :
     articles = Article.objects.all()

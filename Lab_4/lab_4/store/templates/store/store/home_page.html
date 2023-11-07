@@ -31,9 +31,23 @@
 </main>
 <aside>
 {% for adv in advertisement %}
-    <a href="{{ adv.link }} ">
-        <img class="animated-object" src = "{{ adv.image.url }}" width="200" height="200">
-    </a>
+    <section class="banner">
+        <a href="{{ adv.link }} ">
+            <img class="animated-object" src = "{{ adv.image.url }}" width="200" height="200">
+        </a>
+    </section>
 {% endfor %}
 </aside>
+<script>
+    window.time = '{{time}}';
+</script>
+{%if user.is_superuser%}
+<form method="POST">
+    {% csrf_token %}
+    <label for="interval">Интервал (в секундах):</label>
+    <input type="number" id="interval" value="5" name="time">
+    <input type="submit">
+</form>
+{% endif %}
+<script src="{% static 'js/banner.js' %}"></script>
 {% endblock %}

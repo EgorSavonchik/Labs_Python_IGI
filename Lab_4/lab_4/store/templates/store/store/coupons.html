@@ -15,24 +15,33 @@
     <h3>Active</h3>
     <ul class="active-list">
         {% for coupon in active_coupons %}
-        <li>
-            <p>Code: {{ coupon.code }}</p>
-            <p>Discount: {{ coupon.discount }}%</p>
-            <p>Date of creation: {{ coupon.date_of_creation }}</p>
-        </li>  
-        {% endfor %}
-    </ul>
-    
-    <hr><h3>Archived</h3>
-    <ul class="deactive-list">
-        {% for coupon in deactive_coupons %}
-        <li>
-            <p>Code: {{ coupon.code }}</p>
-            <p>Discount: {{ coupon.discount }}%</p>
-            <p>Date of creation: {{ coupon.date_of_creation }}</p>
+        <li class="active-coupons"><p>{{coupon.name}}</p>
+            <ul>
+            <li><p>{{coupon.code}}</p></li>
+            <li><p><div class="discount">{{coupon.discount}}%</div></p></li>
+            <li><div class="container">
+                <div class="colorFill"></div>
+            </div></li>    
+            <li><p>Date of creation: {{ coupon.date_of_creation }}</p></li>
+        </ul>
         </li>
         {% endfor %}
     </ul>
-    
+    <hr><h3>Archived</h3>
+    <ul class="deactive-list">
+        {% for coupon in deactive_coupons %}
+        <li class="active-coupons"><p>{{coupon.name}}</p>
+            <ul>
+            <li><p>{{coupon.code}}</p></li>
+            <li><p><div class="discount">{{coupon.discount}}%</div></p></li>
+            <li><div class="container">
+                <div class="colorFill"></div>
+            </div></li>    
+            <li><p>Date of creation: {{ coupon.date_of_creation }}</p></li>
+        </ul>
+        </li>
+        {% endfor %}
+    </ul>
 </main>
+<script src="{% static "js/coupons.js" %}"></script>
 {% endblock %}

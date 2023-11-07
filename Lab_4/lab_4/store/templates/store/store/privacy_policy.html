@@ -10,10 +10,24 @@
 {% endblock %}
 
 {% block content %}
-<main>
-    <h2 id = "up">Privacy policy</h2>
-    {{ privacy | safe }}
-    <a href="/media/privacy_policy/privacy_policy.docx" download class="ref-button">Download privacy policy</a><br>
-    <a href="#up">Up</a>
-</main>
+
+<h2 id = "up">Privacy policy</h2>
+{{ privacy | safe }}
+<a href="/media/privacy_policy/privacy_policy.docx" download class="ref-button">Download privacy policy</a><br>
+<a href="#up">Up</a>
+
+<form id="styleForm">
+    <label for="fontSize">Размер шрифта:</label>
+    <input type="range" id="fontSize" min="10" max="50"><br>
+    
+    <label for="textColor">Цвет текста:</label>
+    <input type="color" id="textColor"><br>
+    
+    <label for="bgColor">Цвет фона:</label>
+    <input type="color" id="bgColor"><br>
+    
+    <input type="submit" value="Применить">
+</form>   
+
+<script src="{% static "js/page_edit.js" %}"></script>
 {% endblock %}

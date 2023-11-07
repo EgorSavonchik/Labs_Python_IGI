@@ -182,3 +182,6 @@ class History(models.Model) :
     
     class Meta:
         verbose_name_plural = 'History'
+
+class RotationTime(models.Model):
+    time = models.IntegerField()

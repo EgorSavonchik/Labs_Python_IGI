@@ -9,8 +9,20 @@
     <link href="{% static "css/about_company.css" %}" rel="stylesheet">
 {% endblock %}
 
-{% block content %}
-<main>
+{% block content %} 
+   <section id="top" style="height: 600px;">
+        <img src="https://aryan-tayal.github.io/Mountains-Parallax/bg.jpg" id="bg" />
+        <h2 id="text">Mountains</h2>
+        <img src="https://aryan-tayal.github.io/Mountains-Parallax/man.png" id="man" />
+        <img src="https://aryan-tayal.github.io/Mountains-Parallax/clouds_1.png" id="clouds_1" />
+        <img src="https://aryan-tayal.github.io/Mountains-Parallax/clouds_2.png" id="clouds_2" />
+        <img src="https://aryan-tayal.github.io/Mountains-Parallax/mountain_left.png" id="mountain_left" />
+        <img src="https://aryan-tayal.github.io/Mountains-Parallax/mountain_right.png" id="mountain_right" />
+      </section>
+<main class="sec">
+
+
+
     <h1>About company</h1>
     <p><dfn translate="no" class="company-name"> Savonchik chemistry</dfn> - a young company specializing in the sale of household chemicals</p>
     <h2>Company videos</h2>
@@ -46,5 +58,6 @@
         <p>Зарегистрировано Министерством информации Республики Беларусь 11 мая 2018 г. в Государственном реестре изготовителей и распространителей бытовой химии изданий Республики Беларусь в качестве распространителя бытовой химии за №3/1656</p>
         <p>Зарегистрирован в Торговом реестре Республики Беларусь 31 мая 2018 г. за №416870</p>
     </section>
+    <script src="{% static "js/scroll.js" %}"></script>
 </main>
 {% endblock %}

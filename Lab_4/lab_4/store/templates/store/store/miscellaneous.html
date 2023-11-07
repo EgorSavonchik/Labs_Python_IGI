@@ -7,8 +7,23 @@
     <link href="{% static "css/miscellaneous.css" %}" rel="stylesheet">
 {% endblock %}
 
-{% block content %}
-<main>
+{% block header %}
+<div id="overlay" class="hidden"></div>
+
+<div id="age-verification-popup" class="hidden">
+  <p>Введите свою дату рождения:</p>
+  <input type="date" id="birth-date" max="9999-12-31" required>
+  <button id="age-confirm">Подтвердить</button>
+</div>
+
+<header class="header-paralax">
+    <h1>Отсчет до тотальной сдачи</h1>
+    <h2 id="countdown"></h2>        
+</header>
+{% endblock %}
+
+{% block content %}    
+<div class="container">
     <section>
         <h2>Листинг</h2>
         <pre><code>
@@ -191,5 +206,48 @@
     <nav class="ref-nav">
         <a href="">Новая ссылка</a>
     </nav>
-</main>
+
+    <div class="custom-table">
+        <button onclick="transposeTable()">Транспонировать</button>
+        <button onclick="addRow()">Добавить ряд</button>
+        <button onclick="addColumn()">Добавить колонку</button>
+        <input type="number" id="maxSelection" placeholder="Макс. выбор ячеек">
+        <button onclick="setMaxSelection()">Установить макс. выбор</button>
+        <input type="number" id="size" placeholder="Макс. выбор ячеек">
+        <button onclick="generateTable(-1)">Размер</button>
+        <table id="myTable"></table>
+    </div>
+
+    <h2>Добавить пассажира</h2>
+    <form id="passengerForm">
+        <label for="lastName">Фамилия:</label>
+        <input type="text" id="lastName" required><br>
+        
+        <label for="firstName">Имя:</label>
+        <input type="text" id="firstName" required><br>
+        
+        <label for="patronymic">Отчество:</label>
+        <input type="text" id="patronymic" required><br>
+        
+        <label for="flightNumber">Номер рейса:</label>
+        <input type="text" id="flightNumber" required><br>
+        
+        <button type="submit">Добавить</button>
+    </form>
+    
+    <h2>Однофамильцы на рейсе</h2>
+    <ul id="sameLastNamePassengers"></ul>
+    <br>
+    <h2>Все</h2>
+    <ul id="allPassengers"></ul>
+    <br>
+
+<script src="{% static "js/paralax_header.js" %}"></script>
+<script src="{% static "js/countdown.js" %}"></script>
+<script src="{% static "js/check_age.js" %}"></script>
+<script src="{% static "js/table.js" %}"></script>
+<script src="{% static "js/prototype_example.js" %}"></script>
+<script src="{% static "js/extends_example.js" %}"></script>
+<script src="{% static "js/script.js" %}"></script>
+
 {% endblock %}
