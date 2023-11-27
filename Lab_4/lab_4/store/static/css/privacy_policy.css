@@ -27,3 +27,6 @@ p::selection {
   color: #000; /* Цвет текста при выделении */
   font-family: 'Courier New', Courier, monospace;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+

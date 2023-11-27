@@ -1,0 +1,52 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static "css/scroll_paralax.css" %}" rel="stylesheet">
+    <title>Parallax Website</title>
+  </head>
+  <body>
+    <section>
+      <nav>
+        <h4>Егор Савончик</h4>
+        <a href="/">Вернуться назад</a>
+      </nav>
+      <div class="container">
+        <h2 class="main-title">Паралакс</h2>
+        <img src="https://i.ibb.co/rsp6RFJ/bg1.png" class="background" alt="" />
+        <img src="https://i.ibb.co/237VsHs/girl1.png" class="girl" alt="" />
+        <img src="https://i.ibb.co/BKtjhV2/rock1.png" class="rock" alt="" />
+      </div>
+      <div class="content">
+        <div class="content-images">
+          <div>
+            <img src="https://i.ibb.co/w4N157P/haridwar.jpg" alt="" />
+
+            <h3>Красивые места</h3>
+          </div>
+          <div>
+            <img src="https://i.ibb.co/v4yCXYS/rishikesh.jpg" alt="" />
+            <h3>Красивые места</h3>
+          </div>
+        </div>
+        <p class="text">
+            В современной вычислительной технике преобразование Фурье играет ключевую роль в обработке сигналов, компьютерной графике, криптографии и других областях. Этот математический инструмент позволяет анализировать и преобразовывать данные в частотную область, что имеет важное значение для многих прикладных задач.
+            Преобразование Фурье выделяется своей выдающейся значимостью в сигнальной обработке. Этот метод позволяет извлекать частотные компоненты из данных, что является неотъемлемой частью анализа сигналов в разнообразных областях – от обработки аудиосигналов до распознавания образов в изображениях.
+            
+        </p>
+        <p class="text">
+            Цель курсовой работы – сравнить эффективность выполнения преобразований Фурье на процессорах AMD Ryzen 5 5500U и AMD Ryzen 7 4800H. Эти процессоры предназначены для ноутбуков и представляют собой современные вычислительные устройства с различной архитектурой и характеристиками, что делает их интересными объектами для сравнительного анализа. Архитектурные особенности данных процессоров могут оказать влияние на эффективность выполнения алгоритмов, включая преобразование Фурье. 
+        </p>
+      </div>
+    </section>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"
+      integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.js"></script>
+    <script src="{% static "js/home_scroll.js" %}"></script>
+  </body>
+</html>

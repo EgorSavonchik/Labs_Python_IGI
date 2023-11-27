@@ -117,7 +117,7 @@ def home_page(request) :
         try:
             tmp = RotationTime.objects.get(id=1)
         except RotationTime.DoesNotExist:
-            tmp = RotationTime.objects.create(id=1, time=10)
+            tmp = RotationTime.objects.create(id=1)
 
         tmp.time = request.POST.get('time')
         tmp.save()
@@ -199,3 +199,6 @@ def coupons(request) :
 
 def miscellaneous(request) :
     return render(request, "store/store/miscellaneous.html")
+
+def example(request) :
+    return render(request, "store/store/scroll_paralax.html")

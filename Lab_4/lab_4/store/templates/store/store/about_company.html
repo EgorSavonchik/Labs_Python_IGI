@@ -9,7 +9,7 @@
     <link href="{% static "css/about_company.css" %}" rel="stylesheet">
 {% endblock %}
 
-{% block content %} 
+{% block header %}
    <section id="top" style="height: 600px;">
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/bg.jpg" id="bg" />
         <h2 id="text">Mountains</h2>
@@ -19,10 +19,9 @@
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/mountain_left.png" id="mountain_left" />
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/mountain_right.png" id="mountain_right" />
       </section>
+{% endblock %}
+{% block content %}
 <main class="sec">
-
-
-
     <h1>About company</h1>
     <p><dfn translate="no" class="company-name"> Savonchik chemistry</dfn> - a young company specializing in the sale of household chemicals</p>
     <h2>Company videos</h2>

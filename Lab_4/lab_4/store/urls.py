@@ -6,6 +6,7 @@ app_name = 'store'
 urlpatterns = [
      path('', views.product_list, name='product_list'),
      path('about_company/', views.about_company, name='about_company'),
+     path('example/', views.example, name='scroll_paralax'),
      path('home_page', views.home_page, name='home_page'),
      path('news', views.news, name = 'news'),
      path('article/<int:id>', views.article_detail, name = 'article-detail'),

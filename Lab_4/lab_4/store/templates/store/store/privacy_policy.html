@@ -9,25 +9,62 @@
     <link href="{% static "css/privacy_policy.css" %}" rel="stylesheet">
 {% endblock %}
 
+{% block header %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js"></script>
+
+<div style="position: relative; z-index: 2;">
+    <div class="scrollDist par"></div>
+    <div class="par" style="height: 100%; max-width: 1920px; width: 100%; background: rgb(255, 255, 255); height: 700px;">
+        <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+        <mask id="m">
+            <g class="cloud1">
+            <rect fill="#fff" width="100%" height="800px" y="800px" />
+            <image xlink:href="https://assets.codepen.io/721952/cloud1Mask.jpg" width="1200px" height="800px"/>
+            </g>
+        </mask>
+
+        <image class="sky" xlink:href="https://assets.codepen.io/721952/sky.jpg" width="1200px" height="700px"/>
+        <image class="mountBg" xlink:href="https://assets.codepen.io/721952/mountBg.png" width="1200px" height="800px"/>
+        <image class="mountMg" xlink:href="https://assets.codepen.io/721952/mountMg.png" width="1200px" height="800px"/>
+        <image class="cloud2" xlink:href="https://assets.codepen.io/721952/cloud2.png" width="1200px" height="800px"/>
+        <image class="mountFg" xlink:href="https://assets.codepen.io/721952/mountFg.png" width="1200px" height="800px"/>
+        <image class="cloud1" xlink:href="https://assets.codepen.io/721952/cloud1.png" width="1200px" height="800px"/>
+        <image class="cloud3" xlink:href="https://assets.codepen.io/721952/cloud3.png" width="1200px" height="800px"/>
+        <polyline class="arrow" fill="#fff" points="599,250 599,289 590,279 590,282 600,292 610,282 610,279 601,289 601,250"/>
+
+        <rect id="arrowBtn" width="100" height="100" opacity="0" x="550" y="220" style="cursor: pointer"/>
+        </svg>
+    </div>   
+</div>
+
+{% endblock %}
+
+
 {% block content %}
+<div style="position: relative; z-index: 100;">
+    <h2 id = "up">Privacy policy</h2>
+    {{ privacy | safe }}
+    <a href="/media/privacy_policy/privacy_policy.docx" download class="ref-button">Download privacy policy</a><br>
+    <a href="#up">Up</a>
 
-<h2 id = "up">Privacy policy</h2>
-{{ privacy | safe }}
-<a href="/media/privacy_policy/privacy_policy.docx" download class="ref-button">Download privacy policy</a><br>
-<a href="#up">Up</a>
+    <form id="styleForm">
+        <label for="fontSize">Размер шрифта:</label>
+        <input type="range" id="fontSize" min="10" max="50"><br>
+        
+        <label for="textColor">Цвет текста:</label>
+        <input type="color" id="textColor"><br>
+        
+        <label for="bgColor">Цвет фона:</label>
+        <input type="color" id="bgColor"><br>
+        
+        <input type="submit" value="Применить">
+    </form>   
 
-<form id="styleForm">
-    <label for="fontSize">Размер шрифта:</label>
-    <input type="range" id="fontSize" min="10" max="50"><br>
-    
-    <label for="textColor">Цвет текста:</label>
-    <input type="color" id="textColor"><br>
-    
-    <label for="bgColor">Цвет фона:</label>
-    <input type="color" id="bgColor"><br>
-    
-    <input type="submit" value="Применить">
-</form>   
+    <script src="{% static "js/page_edit.js" %}"></script>
+    <script src="{% static "js/scroll_paralax.js" %}"></script>
+</div>
 
-<script src="{% static "js/page_edit.js" %}"></script>
 {% endblock %}
